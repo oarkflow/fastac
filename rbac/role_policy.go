@@ -1,8 +1,8 @@
 package rbac
 
 import (
+	em "github.com/oarkflow/fastac/emitter"
 	"github.com/oarkflow/fastac/model/policy"
-	em "github.com/vansante/go-event-emitter"
 )
 
 type RolePolicy struct {

@@ -24,7 +24,7 @@ import (
 	"runtime"
 	"strings"
 
-	pm "github.com/abichinger/pathmatch"
+	pm "github.com/oarkflow/fastac/pathmatch"
 	"github.com/oarkflow/govaluate"
 )
 

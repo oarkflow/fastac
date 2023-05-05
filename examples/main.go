@@ -11,5 +11,5 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(e.Enforce("alice", map[string]any{"price": 28, "brand": "puma"}, "read"))
+	fmt.Println(e.Enforce("alice", map[string]any{"price": 20, "brand": "puma"}, "read"))
 }

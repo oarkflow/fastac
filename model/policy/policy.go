@@ -15,7 +15,7 @@
 package policy
 
 import (
-	em "github.com/vansante/go-event-emitter"
+	em "github.com/oarkflow/fastac/emitter"
 
 	"github.com/oarkflow/fastac/model/defs"
 	"github.com/oarkflow/fastac/util"

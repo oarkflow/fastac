@@ -16,9 +16,6 @@ package fastac
 
 import (
 	"errors"
-	"time"
-
-	"github.com/oarkflow/log"
 
 	m "github.com/oarkflow/fastac/model"
 	"github.com/oarkflow/fastac/model/defs"
@@ -267,15 +264,9 @@ func (e *Enforcer) Enforce(params ...interface{}) (bool, error) {
 }
 
 func (e *Enforcer) EnforceWithContext(ctx *Context, rvals ...interface{}) (bool, error) {
-	start := time.Now()
 	b, err := e.enforce(ctx, rvals)
 	if err != nil {
 		return b, err
-	}
-	if b {
-		log.Info().Str("duration", time.Since(start).String()).Msgf("Enforce: %v => allow", rvals)
-	} else {
-		log.Info().Msgf("Enforce: %v => deny", rvals)
 	}
 
 	return b, err

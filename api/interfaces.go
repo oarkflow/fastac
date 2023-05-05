@@ -14,7 +14,9 @@
 
 package api
 
-import em "github.com/vansante/go-event-emitter"
+import (
+	"github.com/oarkflow/fastac/emitter"
+)
 
 type IString interface {
 	String() string
@@ -49,11 +51,11 @@ type IRemoveRules interface {
 }
 
 type IAddListener interface {
-	AddListener(event em.EventType, handler em.HandleFunc) (listener *em.Listener)
+	AddListener(event emitter.EventType, handler emitter.HandleFunc) (listener *emitter.Listener)
 }
 
 type IRemoveListener interface {
-	RemoveListener(event em.EventType, listener *em.Listener)
+	RemoveListener(event emitter.EventType, listener *emitter.Listener)
 }
 
 type IAddRemoveListener interface {

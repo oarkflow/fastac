@@ -18,8 +18,8 @@ import (
 	"errors"
 
 	"github.com/oarkflow/fastac/api"
+	"github.com/oarkflow/fastac/emitter"
 	"github.com/oarkflow/fastac/model"
-	eventemitter "github.com/vansante/go-event-emitter"
 )
 
 type opcode int
@@ -35,8 +35,8 @@ type operation struct {
 }
 
 type listener struct {
-	event    eventemitter.EventType
-	listener *eventemitter.Listener
+	event    emitter.EventType
+	listener *emitter.Listener
 }
 
 type StorageController struct {
@@ -48,9 +48,9 @@ type StorageController struct {
 	listeners []listener
 }
 
-func NewStorageController(eventemitter api.IAddRemoveListener, adapter Adapter, autosave bool) *StorageController {
+func NewStorageController(emitter api.IAddRemoveListener, adapter Adapter, autosave bool) *StorageController {
 	sc := &StorageController{
-		em:        eventemitter,
+		em:        emitter,
 		adapter:   adapter,
 		autosave:  autosave,
 		listeners: []listener{},
@@ -61,7 +61,7 @@ func NewStorageController(eventemitter api.IAddRemoveListener, adapter Adapter, 
 	return sc
 }
 
-func (sc *StorageController) addListener(event eventemitter.EventType, opc opcode) {
+func (sc *StorageController) addListener(event emitter.EventType, opc opcode) {
 	l := sc.em.AddListener(event, func(arguments ...interface{}) {
 		rule := arguments[0].([]string)
 		sc.addOp(opc, rule)
@@ -81,7 +81,7 @@ func (sc *StorageController) Enable() {
 	}
 
 	listenerParams := []struct {
-		evt eventemitter.EventType
+		evt emitter.EventType
 		opc opcode
 	}{
 		{model.RULE_ADDED, add},

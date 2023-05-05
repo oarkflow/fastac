@@ -180,11 +180,9 @@ func (m *Matcher) rangeMatches(exprNode *defs.MatcherStage, rules map[string]*Ma
 			"": NewMatcherNode(empty_rule),
 		}
 	}
-
 	for _, child := range rules {
 		params.pvals = child.rule
 		res, err := expr.Eval(params)
-		fmt.Println(res, err)
 		if err != nil {
 			return false, err
 		}
